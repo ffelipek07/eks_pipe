@@ -3,11 +3,11 @@ include {
 }
 
 terraform {
-  source  = "../../../../tf-blueprints//aws/vpc"
+  source  = "../../../..//tf-blueprints/aws/vpc"
 }
 
 inputs = {
-  client                   = "stackdata"
+  client                   = "stackdevops"
 
 }
 

@@ -2,13 +2,13 @@ provider "aws" {
   region = var.region
 }
 
-# terraform {
-#   backend "s3" {
-#     bucket = "tfstate-${var.env}-${var.aws_account_id}"
-#     key    = "vpc/terraform.tfstate"
-#     region = var.region
-#   }
-# }
+terraform {
+  backend "s3" {
+    bucket = "tfstate-${var.env}-${var.aws_account_id}"
+    key    = "vpc/terraform.tfstate"
+    region = var.region
+  }
+}
 
 
 #############
@@ -19,10 +19,10 @@ provider "aws" {
 module "vpc" {
   source = "../../../tf-modules/aws/vpc"
 
-  name = local.name
+  name = var.client
   cidr = var.vpc_cidr
 
-  azs                 = ["${local.region}a", "${local.region}b", "${local.region}c"]
+  azs                 = ["${var.region}a", "${var.region}b", "${var.region}c"]
   private_subnets     = var.private_subnets_ips
   public_subnets      = var.public_subnets_ips
   database_subnets    = var.database_subnets_ips
@@ -30,12 +30,12 @@ module "vpc" {
 
   manage_default_route_table = true
   default_route_table_tags   = { 
-    Name = "default-route-table-${var.stage}"
+    Name = "default-route-table-${var.env}"
     DefaultRouteTable = true
-    Owner       = var.owner
-    Environment = var.stage
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   } 
 
   enable_dns_hostnames = true
@@ -67,50 +67,50 @@ module "vpc" {
   flow_log_max_aggregation_interval    = 60
 
   public_subnet_tags = {
-    Name = "subnet-public-${var.stage}"
-    Owner       = var.owner
-    Environment = var.stage
+    Name = "subnet-public-${var.env}"
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 
   private_subnet_tags = {
-    Name = "subnet-private-${var.stage}"
-    Owner       = var.owner
-    Environment = var.stage
+    Name = "subnet-private-${var.env}"
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 
   database_subnet_tags = {
-    Name = "subnet-database-private-${var.stage}"
-    Owner       = var.owner
-    Environment = var.stage
+    Name = "subnet-database-private-${var.env}"
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 
 
   vpn_gateway_tags = {
-    Name = "vpn-gateway-${var.stage}"
-    Owner       = var.owner
-    Environment = var.stage
+    Name = "vpn-gateway-${var.env}"
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 
   vpc_tags = {
-    Name = "vpc-embraer-${var.stage}"
-    Owner       = var.owner
-    Environment = var.stage
+    Name = "vpc-projeto-${var.env}"
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 
   tags = {
-    Owner       = var.owner
-    Environment = var.stage
+    Owner       = var.client
+    Environment = var.env
     Terraform   = "true"
-    Account     = var.account_id
+    Account     = var.aws_account_id
   }
 }
