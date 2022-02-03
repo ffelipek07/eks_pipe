@@ -3,7 +3,7 @@ include {
 }
 
 terraform {
-  source  = "../tf-modules//aws/s3"
+  source  = "../../../..//tf-blueprints/aws/s3"
 }
 
 inputs = {

@@ -3,11 +3,11 @@ include {
 }
 
 terraform {
-  source = "../tf-modules//aws/ecr"
+  source = "../../../..//tf-blueprints/aws/ecr"
 }
 
 inputs = {
-  client                                = "resource"
+  client                                = "stackdevops"
   registry_list                         = ["appweb"]
 
 }

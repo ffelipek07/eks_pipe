@@ -2,16 +2,20 @@ provider "aws" {
   region = var.region
 }
 
-# terraform {
-#   backend "s3" {}
-# } 
- 
+terraform {
+  backend "s3" {
+    bucket = "tfstate-${var.env}-${var.aws_account_id}"
+    key    = "vpc/terraform.tfstate"
+    region = var.region
+  }
+}
+
 ############# 
 # ECR Module 
 ############# 
 
 module "ecr" {
-  source                                    = "./aws/tf-modules/aws/ecr" 
+  source                                    = "../../../tf-modules/aws/ecr" 
   count                                     = length(var.registry_list) 
   name                                      = var.registry_list[count.index] 
   tag_prefix_list                           = ["release"] 

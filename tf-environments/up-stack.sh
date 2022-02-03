@@ -23,6 +23,10 @@ mkdir log
 
 #vpc
 run aws/dev/vpc terragrunt plan
+run aws/dev/ecr terragrunt plan
+run aws/dev/s3 terragrunt plan
+
+
 #run aws/dev/vpc terragrunt apply --auto-approve >> log/terragrunt-apply-vpc.log
 
 #stackdata
