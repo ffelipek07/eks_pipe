@@ -48,7 +48,7 @@ variable "eks_iam_admin_group_name" {
 variable "namespaces" {
   default = [
     "ingress-nginx",
-    "development"
+    "development",
   ]
 }
 

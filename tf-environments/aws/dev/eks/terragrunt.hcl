@@ -3,11 +3,11 @@ include {
 }
 
 terraform {
-  source = "../tf-modules//aws/eks"
+  source = "../../../..//tf-blueprints/aws/eks"
 }
 
 inputs = {
-  client                   = "stackdata"
+  client                   = "stackdevops"
   eks_cluster_version      = "1.21"
   eks_iam_dev_group_name   = ["Developer"]
   eks_iam_admin_group_name = ["Administrator"]
