@@ -7,6 +7,6 @@ terraform {
 }
 
 inputs = {
-  client                   = "appweb"
+  client                   = "dev-appweb"
 }
 
