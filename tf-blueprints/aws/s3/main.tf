@@ -14,17 +14,20 @@ terraform {
 #S3 BUCKET
 
 module "s3-app" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "2.9.0"
+  source = "../../../tf-modules/aws/s3"
+  #source  = "terraform-aws-modules/s3-bucket/aws"
+  #version = "2.9.0"
 
   bucket = "${var.env}-${var.client}"
   acl    = "private"
 
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-
+  # block_public_acls       = true
+  # block_public_policy     = true
+  # ignore_public_acls      = true
+  # restrict_public_buckets = true
+  
 
 }
+
+
 

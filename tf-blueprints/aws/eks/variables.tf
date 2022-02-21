@@ -49,6 +49,8 @@ variable "namespaces" {
   default = [
     "ingress-nginx",
     "development",
+    "teste",
+    "teste3",
   ]
 }
 
