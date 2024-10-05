@@ -17,7 +17,7 @@ aws s3 rm s3://stackdata-emr-logs-dev/ --recursive
 export TERRAGRUNT_AUTO_RETRY=true
 # senha de exemplo nao usar nos ambientes
 export TF_VAR_mks_username="alice"
-export TF_VAR_mks_password="alice-secret"
+export TF_VAR_mks_password="mks-passwd"
 export TF_VAR_rds_username_aheadpro="aheadpro"
 export TF_VAR_rds_passwd_aheadpro="rdspass123"
 export TF_VAR_rds_username_decoder="decoder"
@@ -35,7 +35,8 @@ mkdir log
 # run aws/qas/eks/ terragrunt state list >> tmp/terragrunt-eks-state-list.log
 
 # # # atualizando kube config
-aws eks update-kubeconfig --name stackdata-dev-eks --role-arn arn:aws:iam::121144830179:role/dev-eks-admin --verbose
+# replace - arn arn:aws:iam::XXXX:role/dev-eks-admin 
+aws eks update-kubeconfig --name stackdata-dev-eks --role-arn arn:aws:iam:::role/dev-eks-admin --verbose
 # # # remoção do metrics server ante de remover eks
 kubectl delete -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 sleep 30
