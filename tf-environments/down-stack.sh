@@ -19,11 +19,11 @@ export TERRAGRUNT_AUTO_RETRY=true
 export TF_VAR_mks_username="alice"
 export TF_VAR_mks_password="alice-secret"
 export TF_VAR_rds_username_aheadpro="aheadpro"
-export TF_VAR_rds_passwd_aheadpro="embraer123"
+export TF_VAR_rds_passwd_aheadpro="rdspass123"
 export TF_VAR_rds_username_decoder="decoder"
-export TF_VAR_rds_passwd_decoder="embraer123"
-export TF_VAR_mq_application_user="embraersys"
-export TF_VAR_mq_application_password="paishaing4Noochoo0De"
+export TF_VAR_rds_passwd_decoder="rdspass123"
+export TF_VAR_mq_application_user="mqsys"
+export TF_VAR_mq_application_password="mqpasswd"
 
 find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
 
